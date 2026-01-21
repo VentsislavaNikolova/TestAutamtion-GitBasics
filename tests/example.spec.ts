@@ -35,7 +35,82 @@ test('successful login', async ({page})=> {
   await username.fill('tomsmith');
   await password.fill('SuperSecretPassword!');
   await loginButton.click();
-
+  
+  
   await expect(successMessage).toBeVisible();
 
+});
+
+test('failed login', async ({page})=> {
+  await page.goto('https://the-internet.herokuapp.com/');
+  await page.getByRole('link', { name: 'Form Authentication' }).click();
+
+  let username = page.getByRole('textbox', { name: 'Username' });
+  let password = page.getByRole('textbox', { name: 'Password' });
+  let loginButton = page.getByRole('button', { name: 'Login' })
+  let errorMessage = page.getByText('Your username is invalid!');
+
+  await username.fill('invalidUser');
+  await password.fill('invalidPassword');
+  await loginButton.click();
+    
+  await expect(errorMessage).toBeVisible();
+
+});
+
+test('logout after login', async ({page})=> {
+  await page.goto('https://the-internet.herokuapp.com/');
+  await page.getByRole('link', { name: 'Form Authentication' }).click();
+
+  let username = page.getByRole('textbox', { name: 'Username' });
+  let password = page.getByRole('textbox', { name: 'Password' });
+  let loginButton = page.getByRole('button', { name: 'Login' })
+  let logoutButton = page.getByRole('link', { name: 'Logout' });
+  let logoutMessage = page.getByText('You logged out of the secure area!');
+
+  await username.fill('tomsmith');
+  await password.fill('SuperSecretPassword!');
+
+  await loginButton.click();
+  await logoutButton.click();
+  
+  await expect(logoutMessage).toBeVisible();
+
+});
+
+test  ('add element', async ({page})=> {
+  await page.goto('https://the-internet.herokuapp.com/');
+  await page.getByRole('link', { name: 'Add/Remove Elements' }).click();
+
+  let addButton = page.getByRole('button', { name: 'Add Element' });
+  let deleteButton = page.getByRole('button', { name: 'Delete' });
+
+  await addButton.click();
+
+  await expect(deleteButton).toBeVisible();
+});
+
+test  ('remove element', async ({page})=> {
+  await page.goto('https://the-internet.herokuapp.com/');
+  await page.getByRole('link', { name: 'Add/Remove Elements' }).click();
+
+  let addButton = page.getByRole('button', { name: 'Add Element' });
+  let deleteButton = page.getByRole('button', { name: 'Delete' });
+
+  await addButton.click();
+  await deleteButton.click();
+
+  await expect(deleteButton).not.toBeVisible();
+});
+
+test ('dropdown ', async ({page})=> {
+  await page.goto('https://the-internet.herokuapp.com/');
+  await page.getByRole('link', { name: 'Dropdown' }).click();
+
+  let dropdown = page.locator('#dropdown')
+
+  await dropdown.click();
+  await dropdown.selectOption('Option 2');
+
+  await expect(dropdown).toHaveValue('2');
 });
