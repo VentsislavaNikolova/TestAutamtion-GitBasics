@@ -11,8 +11,8 @@ test('login in kazancasino', async ({ page }) => {
   const usernameFieldInput = iframe.getByTestId('userName');
   const pagePasswordInput = iframe.getByTestId('password');
 
-  await usernameFieldInput.fill('vnnikolova1');
-  await pagePasswordInput.fill('Password01');
+  await usernameFieldInput.fill('#######');
+  await pagePasswordInput.fill('#######');
 
   const loginButtonSubmit = iframe.getByTestId('login-submit-button');
   await loginButtonSubmit.click();
@@ -20,7 +20,7 @@ test('login in kazancasino', async ({ page }) => {
   //const userProfileIcon = page.getByTestId('loggedUserAvatar');
   const loggedUserName = page.getByTestId('loggedUserName');
   await expect(loggedUserName).toBeVisible();
-  await expect(loggedUserName).toHaveText('vnnikolova1');
+  await expect(loggedUserName).toHaveText('#######');
 
 });
 
@@ -34,7 +34,7 @@ test('login with invalid password', async ({ page }) => {
   const usernameFieldInput = iframe.getByTestId('userName');
   const pagePasswordInput = iframe.getByTestId('password');
 
-  await usernameFieldInput.fill('vnnikolova');
+  await usernameFieldInput.fill('#######');
   await pagePasswordInput.fill('WrongPassword');
 
   const loginButtonSubmit = iframe.getByTestId('login-submit-button');

@@ -128,8 +128,8 @@ test ('login in kazancasino', async ({page})=> {
 
 
 
-  await usernameFieldInput.fill('vnnikolova');
-  await pagePasswordInput.fill('Password01');
+  await usernameFieldInput.fill('#######');
+  await pagePasswordInput.fill('#######');
 
   const loginButtonSubmit = iframe.getByTestId('login-submit-button');
   await loginButtonSubmit.click();
@@ -137,6 +137,6 @@ test ('login in kazancasino', async ({page})=> {
   //const userProfileIcon = page.getByTestId('loggedUserAvatar');
   const loggedUserName = page.getByTestId('loggedUserName');
   await expect(loggedUserName).toBeVisible();
-  await expect(loggedUserName).toHaveText('vnnikolova');
+  await expect(loggedUserName).toHaveText('#######');
 
 });
