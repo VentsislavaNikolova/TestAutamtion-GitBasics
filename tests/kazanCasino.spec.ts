@@ -92,16 +92,16 @@ test('register user', async ({ page }) => {
   const createAccountButton = iframe.getByTestId('registration-submit-button');
 
 
-  await emailfieldInput.fill('ventsislava.nikolova+333@ventureslab.io');
-  await passwordInput.fill('Password01!');
-  await usernameFieldInput.fill('vnnikolova333');
-  await firstNameFieldInput.fill('Ventsislava');
-  await lastNameFieldInput.fill('Nikolova');
+  await emailfieldInput.fill('#######+333@######.io');
+  await passwordInput.fill('#######!');
+  await usernameFieldInput.fill('#######');
+  await firstNameFieldInput.fill('#######');
+  await lastNameFieldInput.fill('#######');
   await birthdayMonthFieldInput.fill('01');
   await birthdayDayFieldInput.fill('01');
   await birthdayYearFieldInput.fill('1990');
   await addressInput.fill('123 Main St');
-  await cityfieldInput.fill('Sofia');
+  await cityfieldInput.fill('#######');
   await zipCodeFieldInput.fill('1000');
   await countryDropdown.selectOption('TR');
   await phoneFieldInput.fill('5898778269');
@@ -142,8 +142,8 @@ test('register with invalid username', async ({ page }) => {
   const passwordInput = iframe.getByTestId('password');
   const usernameFieldInput = iframe.getByTestId('userName');
 
-  await emailfieldInput.fill('ventsislava.nikolova+333@ventureslab.io');
-  await passwordInput.fill('Password01!');
+  await emailfieldInput.fill('#######+333@ventureslab.io');
+  await passwordInput.fill('#######!');
   await usernameFieldInput.fill('inv');
   await emailfieldInput.click();
   const errorMessage = iframe.getByTestId('input-userName-error');
