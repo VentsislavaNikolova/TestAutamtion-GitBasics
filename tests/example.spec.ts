@@ -114,3 +114,29 @@ test ('dropdown ', async ({page})=> {
 
   await expect(dropdown).toHaveValue('2');
 });
+
+test ('login in kazancasino', async ({page})=> {
+  await page.goto('https://kazancasino-stage.fsclub.tech');
+  let loginButton = page.locator('.user-login-button #buttonHeaderLogin');
+  await loginButton.click();
+
+  const iframe = page.frameLocator('#newLoginIframe');
+
+  //const usennameField= page.locator("[data-testif='usenamr']");
+  const usernameFieldInput = iframe.getByTestId('userName');
+  const pagePasswordInput = iframe.getByTestId('password');
+
+
+
+  await usernameFieldInput.fill('vnnikolova');
+  await pagePasswordInput.fill('Password01');
+
+  const loginButtonSubmit = iframe.getByTestId('login-submit-button');
+  await loginButtonSubmit.click();
+
+  //const userProfileIcon = page.getByTestId('loggedUserAvatar');
+  const loggedUserName = page.getByTestId('loggedUserName');
+  await expect(loggedUserName).toBeVisible();
+  await expect(loggedUserName).toHaveText('vnnikolova');
+
+});
