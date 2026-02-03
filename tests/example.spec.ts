@@ -140,3 +140,4 @@ test ('login in kazancasino', async ({page})=> {
   await expect(loggedUserName).toHaveText('#######');
 
 });
+
