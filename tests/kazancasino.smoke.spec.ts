@@ -1,10 +1,11 @@
-import { test, expect } from '@playwright/test';
-
+import { test } from '@playwright/test';
+import { LandingPage } from '../pages/wPages/landingPage';
 
 test('navigate to casino page', async ({ page }) => {
-  await page.goto('https://kazancasino-stage.fsclub.tech');
-  const casinoLink = page.locator('#navCasino');
-  await casinoLink.click();
+  const landingPage = new LandingPage(page);
 
-  await expect(page).toHaveURL(/.*casino/);
+  await landingPage.navigate();
+  const casinoPage = await landingPage.goToCasino();
+
+  await casinoPage.expectIsOpened();
 });
