@@ -10,3 +10,5 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+/test-data/credentials.ts
+/test-data/users.ts
