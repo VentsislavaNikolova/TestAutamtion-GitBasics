@@ -151,15 +151,19 @@ export class RegisterModal {
     async fillAddress(address: string) {
         await this.addressInput.fill(address);
     }
+    
     async fillCity(city: string) {
         await this.cityfieldInput.fill(city);
     }
+
     async fillZipCode(zipCode: string) {
         await this.zipCodeFieldInput.fill(zipCode);
     }
+
     async fillPhone(phone: string) {
         await this.phoneFieldInput.fill(phone);
     }
+
     async fillCountry(countryCode: string) {
         await this.countryDropdown.selectOption(countryCode);
     }

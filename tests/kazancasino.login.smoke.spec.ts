@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { LandingPage } from '../pages/wPages/landingPage';
 import { LoginModal } from '../pages/modals/loginModal';
 import { validUser } from '../test-data/credentials';
@@ -14,13 +14,12 @@ test.describe('Login Test Kazan Casino - Smoke', () => {
     landingPage = new LandingPage(page);
     await landingPage.navigate();
     loginModal = await landingPage.openLogin();
-  }
-  );
-  test('login in kazancasino', async ({ page }) => {
+  });
 
-  homePage = await loginModal.login(validUser.username, validUser.password);
+  test('login in kazancasino', async () => {
+    homePage = await loginModal.login(validUser.username, validUser.password);
 
-  await homePage.expectUserIsLoggedIn(validUser.displayName);
+    await homePage.expectUserIsLoggedIn(validUser.displayName);
   });
 
   test('logout successfully', async () => {
@@ -32,7 +31,4 @@ test.describe('Login Test Kazan Casino - Smoke', () => {
     await homePage.logout();
     await landingPage.loginButtonIsVisible();
   });
-  
-
-
 });

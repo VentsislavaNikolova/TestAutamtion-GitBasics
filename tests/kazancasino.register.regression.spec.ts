@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { LandingPage } from '../pages/wPages/landingPage';
 import { RegisterModal } from '../pages/modals/registerModal';
 import { invalidBirthYear, invalidEmail, invalidPassword, invalidUsername, validBirthDay, validBirthMonth, validBirthYear, validEmail, validFirstName, validLastName, validPassword } from '../test-data/credentials';
@@ -6,6 +6,7 @@ import { invalidBirthYear, invalidEmail, invalidPassword, invalidUsername, valid
 test.describe('Register Test Kazan Casino - Regression', () => {
     let landingPage: LandingPage;
     let registerModal: RegisterModal;
+
     test.beforeEach(async ({ page }) => {
 
         landingPage = new LandingPage(page);
@@ -15,7 +16,7 @@ test.describe('Register Test Kazan Casino - Regression', () => {
     });
 
 
-    test('register with invalid email', async ({ page }) => {
+    test('register with invalid email', async () => {
 
         await registerModal.fillEmail(invalidEmail);
 
@@ -23,7 +24,7 @@ test.describe('Register Test Kazan Casino - Regression', () => {
 
     });
 
-    test('register with invalid username', async ({ page }) => {
+    test('register with invalid username', async () => {
 
         await registerModal.fillEmail(validEmail);
         await registerModal.fillPassword(validPassword);
@@ -33,14 +34,14 @@ test.describe('Register Test Kazan Casino - Regression', () => {
         await registerModal.expectInvalidUsernameError();
     });
 
-    test('register with incorrect yearOfBirth', async ({ page }) => {
+    test('register with incorrect yearOfBirth', async () => {
 
         await registerModal.fillBirthDate(validBirthDay, validBirthMonth, invalidBirthYear);
 
         await registerModal.expectInvalidBirthDateError();
     });
 
-    test('register with short password', async ({ page }) => {
+    test('register with short password', async () => {
 
         await registerModal.fillPassword(invalidPassword);
         await registerModal.clickOutsideTestedField();
@@ -48,7 +49,7 @@ test.describe('Register Test Kazan Casino - Regression', () => {
         await registerModal.expectShortPasswordError();
     });
 
-    test('register without first name enetered', async ({ page }) => {
+    test('register without first name enetered', async () => {
 
         await registerModal.submit();
 

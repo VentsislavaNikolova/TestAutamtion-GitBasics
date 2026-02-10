@@ -2,7 +2,7 @@ export const uniqueUsername = (
   base: string,
   maxLength = 15
 ): string => {
-  const uniquePart = Date.now().toString().slice(-5); // последните 5 цифри
+  const uniquePart = Date.now().toString().slice(-5); 
   const separator = '_';
 
   const availableLength =
@@ -20,7 +20,7 @@ export const randomBirthDateWithin100Years = () => {
   const currentYear = new Date().getFullYear();
 
   const minYear = currentYear - 100;
-  const maxYear = currentYear - 18; // 👈 ако има age restriction (по избор)
+  const maxYear = currentYear - 18; 
 
   const year =
     Math.floor(Math.random() * (maxYear - minYear + 1)) + minYear;
@@ -29,7 +29,7 @@ export const randomBirthDateWithin100Years = () => {
     Math.floor(Math.random() * 12) + 1;
 
   const day =
-    Math.floor(Math.random() * 28) + 1; // 1–28 → винаги валидна дата
+    Math.floor(Math.random() * 28) + 1; 
 
   return {
     birthYear: year.toString(),
@@ -39,10 +39,10 @@ export const randomBirthDateWithin100Years = () => {
 };
 
 export const randomPhoneNumber = (): string => {
-  // първата цифра е 5
+
   const firstDigit = '5';
 
-  // още 9 произволни цифри
+
   const remainingDigits = Array.from({ length: 9 }, () =>
     Math.floor(Math.random() * 10)
   ).join('');

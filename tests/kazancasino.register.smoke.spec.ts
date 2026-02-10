@@ -1,8 +1,7 @@
-import test, { expect } from "@playwright/test";
+import { test } from "@playwright/test";
 import { LandingPage } from "../pages/wPages/landingPage";
 import { RegisterModal } from "../pages/modals/registerModal";
 import { createSmokeUser } from "../test-data/users";
-import { log } from "node:console";
 
 test.describe('Register Test Kazan Casino - Smoke', () => {
     let landingPage: LandingPage;
@@ -14,7 +13,7 @@ test.describe('Register Test Kazan Casino - Smoke', () => {
         registerModal = await landingPage.openRegister();
 
     });
-    test('register user', async ({ page }) => {
+    test('register user', async () => {
 
         const user = createSmokeUser();
 
@@ -36,9 +35,10 @@ test.describe('Register Test Kazan Casino - Smoke', () => {
 
     });
 
-    test('navigate to login page', async ({ page }) => {
+    test('navigate to login page', async () => {
 
         const loginModal = await registerModal.navigateToLogin();
+
         await loginModal.expectLoginModalVisible();
     });
 });

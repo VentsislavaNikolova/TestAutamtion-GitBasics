@@ -19,34 +19,26 @@ export class LandingPage extends BasePage {
     await this.page.goto('https://kazancasino-stage.fsclub.tech');
   }
 
-  private registerButton(): Locator {
-    return this.page.locator(LANDING_SELECTORS.registerButton);
-  }
-
-  private loginButton(): Locator {
-    return this.page.locator(LANDING_SELECTORS.loginButton);
-  }
-
-  private casinoLink(): Locator {
-    return this.page.locator(LANDING_SELECTORS.casinoLink);
-  }
-
+  private registerButton: Locator = this.page.locator(LANDING_SELECTORS.registerButton);
+  private loginButton: Locator = this.page.locator(LANDING_SELECTORS.loginButton);
+  private casinoLink: Locator = this.page.locator(LANDING_SELECTORS.casinoLink);
+   
   async openRegister(): Promise<RegisterModal> {
-    await this.registerButton().click();
+    await this.registerButton.click();
     return new RegisterModal(this.page);
   }
 
   async openLogin(): Promise<LoginModal> {
-    await this.loginButton().click();
+    await this.loginButton.click();
     return new LoginModal(this.page);
   }
 
   async goToCasino(): Promise<CasinoPage> {
-    await this.casinoLink().click();
+    await this.casinoLink.click();
     return new CasinoPage(this.page);
   }
 
   async loginButtonIsVisible() {
-    return this.loginButton().isVisible();
+    return this.loginButton.isVisible();
   }
 }
