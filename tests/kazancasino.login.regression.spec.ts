@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { LandingPage } from '../pages/wPages/landingPage';
 import { LoginModal } from '../pages/modals/loginModal';
 import { HomePage } from '../pages/wPages/homePage';
@@ -10,37 +10,37 @@ test.describe('Login Test Kazan Casino - Regression', () => {
   let loginModal: LoginModal;
   let homePage: HomePage;
   let registerModal: RegisterModal;
+
   test.beforeEach(async ({ page }) => {
     landingPage = new LandingPage(page);
     await landingPage.navigate();
     loginModal = await landingPage.openLogin();
   });
-  test('login in kazancasino', async ({ page }) => {
+  test('login in kazancasino', async () => {
 
     homePage = await loginModal.login(validUser.username, validUser.password);
     await homePage.expectUserIsLoggedIn(validUser.displayName);
   });
 
-  test('login with invalid password', async ({ page }) => {
+  test('login with invalid password', async () => {
 
     await loginModal.login(validUser.username, invalidUser.password);
     await loginModal.expectErrorMessageVisible()
   });
 
-  test('login with invalid username', async ({ page }) => {
+  test('login with invalid username', async () => {
 
     await loginModal.login(invalidUser.username, validUser.password);
     await loginModal.expectErrorMessageVisible()
   });
 
-  test('navigate to reset password', async ({ page }) => {
+  test('navigate to reset password', async () => {
     await loginModal.navigateToResetPassword();
     await loginModal.expectResetPasswordFormVisible();
   });
-  test('createAccountButton works', async ({ page }) => {
+  test('createAccountButton works', async () => {
 
     registerModal = await loginModal.navigateToRegister();
     await registerModal.expectRegistrationModalVisible();
   });
-
 });

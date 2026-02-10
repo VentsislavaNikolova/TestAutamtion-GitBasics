@@ -84,7 +84,6 @@ export class LoginModal {
   async navigateToRegister(): Promise<RegisterModal> {
     await this.registerButton.click();
     return new RegisterModal(this.page);
-
   }
 
   async expectLoginModalVisible() {

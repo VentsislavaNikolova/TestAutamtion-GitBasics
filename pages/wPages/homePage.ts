@@ -13,15 +13,12 @@ const HOME_PAGE_TESTIDS = {
 };
 
 export class HomePage extends BasePage {
-    private readonly loggedUserName: Locator;
-    private readonly logoutButton: Button;
-    private readonly loginButton: Button;
+    private readonly loggedUserName: Locator = this.page.getByTestId(HOME_PAGE_TESTIDS.loggedUserName);
+    private readonly logoutButton: Button = new Button(this.page, HOME_PAGE_TESTIDS.logoutButton);
+    private readonly loginButton: Button = new Button(this.page, HOME_PAGE_SELECTORS.loginButton);
 
     constructor(page: Page) {
         super(page);
-        this.loggedUserName = page.getByTestId(HOME_PAGE_TESTIDS.loggedUserName);
-        this.logoutButton = new Button(page, HOME_PAGE_TESTIDS.logoutButton);
-        this.loginButton = new Button(page, HOME_PAGE_SELECTORS.loginButton);
     }
 
     async expectUserIsLoggedIn(expectedUsername: string) {
